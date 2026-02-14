@@ -1,0 +1,277 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f7f0;/*light green bg*/
+    margin: 0;
+    color: #333;
+}
+
+header{
+    background-color: #2e7d32;
+    /* dark organic green*/
+    color: white ;
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {margin: 0;}
+
+section {
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h2{color: #2e7d32;}
+
+/*list styling for awareness section*/
+ul{
+    padding-left: 20px;
+}
+li{
+    margin-bottom: 10px;
+}
+
+.cta{
+    font-weight: bold;
+    color: #2e7d32;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+    background: #2d5a2d;
+    color: white;
+    margin-top: 40px;
+}
+
+/* Navigation Menu Styling */
+nav ul {
+    list-style-type: none; /* Isse woh dots (bullets) hat jayenge */
+    padding: 0;
+    margin: 20px 0 0 0;
+    display: flex;         /* Ye sabse important hai horizontal karne ke liye */
+    justify-content: center; /* Isse buttons beech mein (center) aa jayenge */
+    gap: 30px;            /* Isse buttons ke beech mein barabar jagah banegi */
+}
+
+nav ul li a {
+    text-decoration: none; /* Underline hatane ke liye */
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #a5d6a7; /* Mouse le jane par sundar light green color */
+}
+
+.site-logo {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+    image-rendering: -webkit-optimize;
+}
+
+.site-logo:active{
+    transform: scale(3);
+    position: relative;
+    z-index: 999;
+}
+
+/* Vegetables Images Style */
+.veg-img {
+    width: 100%;           /* Card ki poori chaudai lega */
+    height: 180px;         /* Ek fix height taaki saare cards barabar dikhein */
+    object-fit: cover;     /* Photo khichegi nahi, sahi se crop hogi */
+    border-radius: 10px;   /* Corners thode round dikhenge */
+    margin-bottom: 10px;   /* Text se thodi doori */
+}
+
+/* Container ko grid mein dikhane ke liye */
+.veg-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.veg-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.veg-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth movement ke liye */
+}
+
+.veg-card:hover {
+    transform: translateY(-10px); /* Card 10px upar uthega */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Shadow thodi gehri ho jayegi */
+}
+
+/* Mobile Devices ke liye setup */
+@media (max-width: 768px) {
+    .veg-container {
+        grid-template-columns: repeat(2, 1fr); /* Phone par ek line mein sirf 2 cards dikhenge */
+    }
+    
+    header h1 {
+        font-size: 1.5rem; /* Heading thodi chhoti ho jayegi */
+    }
+}
+
+@media (max-width: 480px) {
+    .veg-container {
+        grid-template-columns: 1fr; /* Bahut chhote phone par ek line mein 1 hi card dikhega */
+    }
+}
+
+.contact-section {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2e7d32;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #1b5e20;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #2e7d32;
+    font-weight: bold;
+    border: 1px solid #2e7d32;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.home-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation ke liye */
+    background: white; /* Background color zaroori hai shadow dikhne ke liye */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.home-section:hover {
+    transform: translateY(-8px); /* Mouse le jane par 8px upar uthega */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Haldi shadow add hogi */
+}
+
+/* Poore Form Box ke liye */
+.contact-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+}
+
+.contact-section:hover {
+    transform: scale(1.02); /* Thoda sa bada hoga */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Submit Button ke liye */
+.submit-btn {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #1b5e20;
+    transform: translateY(-3px); /* Button thoda upar uthega */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Awareness Header Box (Jahan tumhara mouse hai) */
+.awareness-header {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 90%;
+    transition: all 0.4s ease; /* Animation smooth karne ke liye */
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+/* Mouse rakhte hi ye hoga */
+.awareness-header:hover {
+    transform: translateY(-10px); /* Box upar uthega */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* Shadow gehri hogi */
+    border-color: #e6eee6; /* Border green ho jayega */
+}
+
+/* Heading ka color bhi badle mouse rakhte hi */
+.awareness-header:hover h1 {
+    color: #2e7d32;
+}
