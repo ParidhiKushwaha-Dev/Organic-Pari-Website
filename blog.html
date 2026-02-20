@@ -1,51 +1,21 @@
-DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Organic Pari - Blogs</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f9f4; padding: 40px; }
-        .blog-container { max-width: 900px; margin: auto; }
-        .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #2e7d32; }
-        h2 { color: #1b5e20; margin-top: 0; }
-        .date { font-size: 12px; color: #888; }
-        .read-more { display: inline-block; margin-top: 15px; color: #4CAF50; font-weight: bold; text-decoration: none; }
-    </style>
+<meta charset="UTF-8">
+<title>Organic Pari - Blogs</title>
+<style>
+body { font-family: 'Segoe UI', sans-serif; background: #f4f9f4; padding: 20px; text-align: center; }
+.nav { margin-bottom: 30px; }
+.nav a { margin: 10px; text-decoration: none; color: #2e7d32; font-weight: bold; }
+.blog-container { max-width: 700px; margin: auto; text-align: left; }
+.card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+h2 { color: #1b5e20; font-size: 20px; margin-top: 0; }
+.load-btn { padding: 12px 25px; background: #2e7d32; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+.read-more { color: #4CAF50; font-weight: bold; text-decoration: none; }
+</style>
 </head>
 <body>
-    <div class="blog-container">
-        <h1 style="text-align:center; color: #1b5e20;">Latest Wellness Blogs</h1>
-        <div id="posts">Fetching latest updates from Pari's Blog...</div>
-    </div>
 
-    <script>
-        // Aapka blog feed URL
-        const blogUrl = "https://pari-health-tips.blogspot.com/feeds/posts/default?alt=rss";
-        const finalUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(blogUrl)}`;
-
-        async function getBlogs() {
-            try {
-                const response = await fetch(finalUrl);
-                const data = await response.json();
-                const postsDiv = document.getElementById('posts');
-                postsDiv.innerHTML = '';
-
-                data.items.forEach(item => {
-                    const postCard = `
-                        <div class="card">
-                            <span class="date">${item.pubDate}</span>
-                            <h2>${item.title}</h2>
-                            <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 180)}...</p>
-                            <a href="${item.link}" target="_blank" class="read-more">Read Full Article on Blogger →</a>
-                        </div>
-                    `;
-                    postsDiv.innerHTML += postCard;
-                });
-            } catch (error) {
-                document.getElementById('posts').innerHTML = "Oops! Blogs load nahi ho paaye. Ek baar link check karein.";
-            }
-        }
-        getBlogs();
-    </script>
 </body>
 </html>
