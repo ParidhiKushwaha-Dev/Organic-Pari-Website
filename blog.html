@@ -1,47 +1,51 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Organic Pari - My Blogs</title>
+    <title>Organic Pari - Blogs</title>
     <style>
-        body { font-family: sans-serif; background: #f9f9f9; padding: 20px; }
-        .container { max-width: 800px; margin: auto; }
-        .blog-post { background: white; margin-bottom: 20px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .blog-post h2 { color: #2e7d32; }
-        .read-btn { background: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; display: inline-block; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f9f4; padding: 40px; }
+        .blog-container { max-width: 900px; margin: auto; }
+        .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #2e7d32; }
+        h2 { color: #1b5e20; margin-top: 0; }
+        .date { font-size: 12px; color: #888; }
+        .read-more { display: inline-block; margin-top: 15px; color: #4CAF50; font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 style="text-align:center;">Latest Wellness Blogs</h1>
-        <div id="reilly-blog-list">Loading blogs...</div>
+    <div class="blog-container">
+        <h1 style="text-align:center; color: #1b5e20;">Latest Wellness Blogs</h1>
+        <div id="posts">Fetching latest updates from Pari's Blog...</div>
     </div>
 
     <script>
-        // Aapke blog ka URL
-        const rssUrl = "https://pari-health-tips.blogspot.com/feeds/posts/default?alt=json";
+        // Aapka blog feed URL
+        const blogUrl = "https://pari-health-tips.blogspot.com/feeds/posts/default?alt=rss";
+        const finalUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(blogUrl)}`;
 
-        fetch(rssUrl)
-            .then(response => response.json())
-            .then(data => {
-                const posts = data.feed.entry;
-                let html = "";
-                posts.forEach(post => {
-                    const title = post.title.$t;
-                    const link = post.link.find(l => l.rel === "alternate").href;
-                    const summary = post.content.$t.substring(0, 150).replace(/<[^>]*>?/gm, '') + "...";
-                    
-                    html += `
-                        <div class="blog-post">
-                            <h2>${title}</h2>
-                            <p>${summary}</p>
-                            <a href="${link}" class="read-btn" target="_blank">Read More</a>
+        async function getBlogs() {
+            try {
+                const response = await fetch(finalUrl);
+                const data = await response.json();
+                const postsDiv = document.getElementById('posts');
+                postsDiv.innerHTML = '';
+
+                data.items.forEach(item => {
+                    const postCard = `
+                        <div class="card">
+                            <span class="date">${item.pubDate}</span>
+                            <h2>${item.title}</h2>
+                            <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 180)}...</p>
+                            <a href="${item.link}" target="_blank" class="read-more">Read Full Article on Blogger →</a>
                         </div>
                     `;
+                    postsDiv.innerHTML += postCard;
                 });
-                document.getElementById('reilly-blog-list').innerHTML = html;
-            })
-            .catch(err => console.error("Error:", err));
+            } catch (error) {
+                document.getElementById('posts').innerHTML = "Oops! Blogs load nahi ho paaye. Ek baar link check karein.";
+            }
+        }
+        getBlogs();
     </script>
 </body>
 </html>
