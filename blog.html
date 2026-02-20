@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Organic Pari - My Blogs</title>
+    <style>
+        body { font-family: sans-serif; background: #f9f9f9; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .blog-post { background: white; margin-bottom: 20px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .blog-post h2 { color: #2e7d32; }
+        .read-btn { background: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align:center;">Latest Wellness Blogs</h1>
+        <div id="reilly-blog-list">Loading blogs...</div>
+    </div>
+
+    <script>
+        // Aapke blog ka URL
+        const rssUrl = "https://pari-health-tips.blogspot.com/feeds/posts/default?alt=json";
+
+        fetch(rssUrl)
+            .then(response => response.json())
+            .then(data => {
+                const posts = data.feed.entry;
+                let html = "";
+                posts.forEach(post => {
+                    const title = post.title.$t;
+                    const link = post.link.find(l => l.rel === "alternate").href;
+                    const summary = post.content.$t.substring(0, 150).replace(/<[^>]*>?/gm, '') + "...";
+                    
+                    html += `
+                        <div class="blog-post">
+                            <h2>${title}</h2>
+                            <p>${summary}</p>
+                            <a href="${link}" class="read-btn" target="_blank">Read More</a>
+                        </div>
+                    `;
+                });
+                document.getElementById('reilly-blog-list').innerHTML = html;
+            })
+            .catch(err => console.error("Error:", err));
+    </script>
+</body>
+</html>
